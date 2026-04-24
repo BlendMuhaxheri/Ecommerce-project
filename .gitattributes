@@ -1,9 +1,15 @@
-# Laravel backend
-resources/**/*.php linguist-language=PHP
+# ----------------------------
+# Laravel backend (PHP)
+# ----------------------------
+backend/**/*.php linguist-language=PHP
 
-# Blade views should NOT affect stats
-resources/views/**/*.blade.php linguist-generated
+# ----------------------------
+# Blade templates (ignore from language stats)
+# ----------------------------
+*.blade.php linguist-vendored
 
+# ----------------------------
 # Frontend (Next.js)
+# ----------------------------
 frontend/** linguist-detectable=true
 frontend/** linguist-language=TypeScript
