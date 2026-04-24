@@ -14,12 +14,7 @@ class ProductService
      */
     public function dispatchProductImport(string $supplierSlug)
     {
-        $supplier = Supplier::getSelfBySlug($supplierSlug);
-
-        $client = (new ClientFactory())->make($supplier);
-
-        $products = $client->getProducts(1);
-
+        $products = $this->fetchSupplierData($supplierSlug, 1);
         $totalPages = $products['totalPages'];
 
         collect(range(1, $totalPages))
@@ -37,10 +32,7 @@ class ProductService
      */
     public function importProductPage(string $supplierSlug, int $page)
     {
-        $supplier = Supplier::getSelfBySlug($supplierSlug);
-        $client = (new ClientFactory())->make($supplier);
-
-        $response = $client->getProducts($page);
+        $response = $this->fetchSupplierData($supplierSlug, $page);
 
         foreach ($response['products'] as $item) {
             Product::updateOrCreate(
@@ -55,5 +47,13 @@ class ProductService
                 ],
             );
         }
+    }
+
+    private function fetchSupplierData(string $supplierSlug, int $page = 1)
+    {
+        $supplier = Supplier::getSelfBySlug($supplierSlug);
+        $client = (new ClientFactory())->make($supplier);
+
+        return $client->getProducts($page);
     }
 }
