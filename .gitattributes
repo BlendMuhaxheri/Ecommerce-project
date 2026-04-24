@@ -1,15 +1,9 @@
-# ----------------------------
-# Laravel backend (PHP)
-# ----------------------------
-backend/**/*.php linguist-language=PHP
-
-# ----------------------------
-# Blade templates (ignore from language stats)
-# ----------------------------
+# Ignore Blade everywhere (including history weighting)
 *.blade.php linguist-vendored
 
-# ----------------------------
-# Frontend (Next.js)
-# ----------------------------
+# Backend PHP
+backend/**/*.php linguist-language=PHP
+
+# Frontend
 frontend/** linguist-detectable=true
 frontend/** linguist-language=TypeScript
