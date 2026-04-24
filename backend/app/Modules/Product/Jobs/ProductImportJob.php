@@ -25,6 +25,6 @@ class ProductImportJob implements ShouldQueue
      */
     public function handle(ProductService $service): void
     {
-        $service->importProducts($this->supplierSlug);
+        $service->dispatchProductImport($this->supplierSlug);
     }
 }

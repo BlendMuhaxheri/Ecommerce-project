@@ -34,9 +34,9 @@ class BestBuy implements Client
                 );
             }, $results['products']),
 
-            'totalPages' => $results['totalPages'],
+            'total'       => $results['total'],
+            'totalPages'  => $results['totalPages'],
             'currentPage' => $results['currentPage'],
-            'total' => $results['total'],
         ];
     }
 

@@ -6,11 +6,13 @@ use App\Models\Product;
 use App\Models\Supplier;
 use App\Modules\Product\Factory\ClientFactory;
 use App\Modules\Product\Jobs\ProductImportPageJob;
-use Illuminate\Support\Facades\Log;
 
 class ProductService
 {
-    public function importProducts(string $supplierSlug)
+    /**
+     * Dispatch import jobs for all product pages
+     */
+    public function dispatchProductImport(string $supplierSlug)
     {
         $supplier = Supplier::getSelfBySlug($supplierSlug);
 
@@ -30,7 +32,10 @@ class ProductService
             });
     }
 
-    public function importPage(string $supplierSlug, int $page)
+    /**
+     * Import products for a single page
+     */
+    public function importProductPage(string $supplierSlug, int $page)
     {
         $supplier = Supplier::getSelfBySlug($supplierSlug);
         $client = (new ClientFactory())->make($supplier);
@@ -45,7 +50,7 @@ class ProductService
                     'description'   => $item->longDescription,
                     'category'      => $item->class,
                     'item_status'   => $item->active,
-                    'stock_balance'  => $item->orderable === 'Available' ? 1 : 0,
+                    'stock_balance' => $item->orderable === 'Available' ? 1 : 0,
                     'price'         => $item->regularPrice,
                 ],
             );
