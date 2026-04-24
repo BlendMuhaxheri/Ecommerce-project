@@ -1,8 +1,9 @@
-# Treat Blade as PHP (not its own language weight)
-*.blade.php linguist-language=PHP
+# Laravel backend
+resources/**/*.php linguist-language=PHP
 
-# Optional: ensure frontend is counted properly
+# Blade views should NOT affect stats
+resources/views/**/*.blade.php linguist-generated
+
+# Frontend (Next.js)
 frontend/** linguist-detectable=true
-
-# If frontend is Next.js/JS/TS heavy, you can also force clarity
-frontend/** linguist-language=JavaScript
+frontend/** linguist-language=TypeScript
