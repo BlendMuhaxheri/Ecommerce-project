@@ -23,13 +23,13 @@ class BestBuy implements Client
         return [
             'products' => array_map(function ($item) {
                 return new ProductDTO(
-                    sku: $item['sku'],
+                    id: $item['sku'],
                     name: $item['name'],
-                    longDescription: $item['longDescription'],
-                    class: $item['class'],
+                    description: $item['longDescription'],
+                    category: $item['class'],
                     active: $item['active'],
-                    orderable: $item['orderable'],
-                    regularPrice: $item['regularPrice'],
+                    stockBalance: $item['orderable'],
+                    price: $item['regularPrice'],
                     image: $item['images'][0]['href'] ?? null,
                 );
             }, $results['products']),

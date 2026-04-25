@@ -36,14 +36,15 @@ class ProductService
 
         foreach ($response['products'] as $item) {
             Product::updateOrCreate(
-                ['supplier_item_id' => $item->sku],
+                ['supplier_item_id' => $item->id],
                 [
                     'name'          => $item->name,
-                    'description'   => $item->longDescription,
-                    'category'      => $item->class,
+                    'description'   => $item->description,
+                    'category'      => $item->category,
                     'item_status'   => $item->active,
-                    'stock_balance' => $item->orderable === 'Available' ? 1 : 0,
-                    'price'         => $item->regularPrice,
+                    'stock_balance' => $item->stockBalance === 'Available' ? 1 : 0,
+                    'price'         => $item->price,
+                    'image'         => $item->image
                 ],
             );
         }
