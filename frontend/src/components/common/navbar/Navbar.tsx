@@ -1,17 +1,25 @@
 import SearchBar from "./SearchBar";
 import NavIcons from "./NavIcons";
 import NavLinks from "./NavLinks";
+import Logo from "./Logo";
 
 export default function Navbar() {
   return (
-    <header className="w-full">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="font-bold text-xl">ShopEase</div>
+    <header className="w-full border-b border-gray-100 bg-white">
+      <div className="w-full px-6 xl:px-10 2xl:px-16 h-16 flex items-center">
+        <Logo />
 
-        <NavLinks />
+        {/* CENTER AREA */}
+        <div className="flex-1 flex items-center justify-center gap-10">
+          <NavLinks />
+        </div>
 
-        <div className="flex items-center gap-4">
-          <SearchBar />
+        {/* RIGHT AREA */}
+        <div className="flex items-center gap-4 ml-auto">
+          <div className="w-[240px]">
+            <SearchBar />
+          </div>
+
           <NavIcons />
         </div>
       </div>

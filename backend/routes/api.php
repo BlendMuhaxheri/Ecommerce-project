@@ -1,7 +1,7 @@
 <?php
 
 use App\Modules\Product\Client\BestBuy;
-use App\Modules\Products\Http\Controllers\ProductController;
+use App\Modules\Product\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/products', [ProductController::class, 'index']);

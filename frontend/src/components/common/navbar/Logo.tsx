@@ -6,9 +6,9 @@ export default function Logo() {
       href="/"
       className="text-xl font-bold text-gray-900 hover:text-black transition"
     >
-     <div className="font-bold text-xl text-gray-900">
-      ShopEase
-     </div>
+      <div className="text-lg font-semibold tracking-tight text-gray-900">
+        ShopEase
+      </div>
     </Link>
   );
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Modules\Product\Http\Filters\QueryFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -16,4 +18,9 @@ class Product extends Model
         'price',
         'image'
     ];
+
+    public function scopeFilter(Builder $builder, QueryFilter $filters)
+    {
+        return $filters->apply($builder);
+    }
 }

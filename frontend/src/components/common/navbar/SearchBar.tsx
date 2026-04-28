@@ -1,13 +1,13 @@
 export default function SearchBar() {
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full max-w-sm → max-w-md">
       <input
         placeholder="Search for products..."
-        className="w-full text-gray-900 bg-white rounded-full px-4 py-2 pl-10 text-sm outline-none focus:ring-2 focus:ring-black/10"
+        className="w-full text-gray-900 bg-gray-100 rounded-lg px-4 py-2.5 pl-10 text-sm outline-none focus:ring-1 focus:ring-gray-300"
       />
 
       <svg
-        className="absolute left-3 top-2.5 w-4 h-4 text-gray-500"
+        className="absolute left-3 top-3 w-4 h-4 text-gray-400"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
