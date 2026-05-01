@@ -2,7 +2,6 @@
 
 namespace App\Modules\Product\DTO;
 
-
 class ProductDTO
 {
     public function __construct(

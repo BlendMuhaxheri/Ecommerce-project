@@ -2,7 +2,8 @@
 
 namespace App\Modules\Product\Jobs;
 
-use App\Modules\Product\Service\ProductService;
+use App\Models\Supplier;
+use App\Modules\Product\Service\ProductImportService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
@@ -10,21 +11,14 @@ class ProductImportJob implements ShouldQueue
 {
     use Queueable;
 
-    protected string $supplierSlug;
+    public function __construct(
+        protected string $supplierSlug
+    ) {}
 
-    /**
-     * Create a new job instance.
-     */
-    public function __construct(string $supplierSlug)
+    public function handle(ProductImportService $service): void
     {
-        $this->supplierSlug = $supplierSlug;
-    }
+        $supplier = Supplier::getSelfBySlug($this->supplierSlug);
 
-    /**
-     * Execute the job.
-     */
-    public function handle(ProductService $service): void
-    {
-        $service->dispatchProductImport($this->supplierSlug);
+        $service->dispatchProductImport($supplier);
     }
 }

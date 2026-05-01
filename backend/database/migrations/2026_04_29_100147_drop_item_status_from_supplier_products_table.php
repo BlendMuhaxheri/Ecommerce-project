@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->boolean('is_active')->default(true);
-            $table->integer('sort_order')->default(0);
+        Schema::table('supplier_products', function (Blueprint $table) {
+            $table->dropColumn('item_status');
         });
     }
 
@@ -22,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
-            //
+        Schema::table('supplier_products', function (Blueprint $table) {
+            $table->string('item_status')->nullable();
         });
     }
 };

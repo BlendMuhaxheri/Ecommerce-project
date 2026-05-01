@@ -2,7 +2,7 @@
 
 namespace App\Modules\Product\Jobs;
 
-use App\Modules\Product\Service\ProductService;
+use App\Modules\Product\Service\ProductImportService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
@@ -10,22 +10,13 @@ class ProductImportPageJob implements ShouldQueue
 {
     use Queueable;
 
-    protected string $supplierSlug;
-    protected int $page;
-    /**
-     * Create a new job instance.
-     */
-    public function __construct(string $supplierSlug, int $page)
-    {
-        $this->supplierSlug = $supplierSlug;
-        $this->page         = $page;
-    }
+    public function __construct(
+        public int $supplierId,
+        public int $page
+    ) {}
 
-    /**
-     * Execute the job.
-     */
-    public function handle(ProductService $service): void
+    public function handle(ProductImportService $service): void
     {
-        $service->importProductPage($this->supplierSlug, $this->page);
+        $service->importProductPage($this->supplierId, $this->page);
     }
 }

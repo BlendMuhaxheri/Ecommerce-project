@@ -7,7 +7,7 @@ export default function NavLinks() {
         Home
       </Link>
 
-      <Link href="/product" className="hover:text-black transition">
+      <Link href="/products" className="hover:text-black transition">
         Shop
       </Link>
       <Link href="/product" className="hover:text-black transition">

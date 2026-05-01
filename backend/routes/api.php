@@ -8,6 +8,10 @@ Route::get('/products', [ProductController::class, 'index']);
 
 Route::get('/test', function () {
     $client = new BestBuy();
-    $prods = $client->getProducts();
+
+    $page = request()->get('page', 1);
+
+    $prods = $client->getProducts($page);
+
     dd($prods);
 });

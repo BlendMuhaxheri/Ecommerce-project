@@ -2,13 +2,13 @@
 
 namespace App\Modules\Product\Client;
 
-use App\Modules\Product\DTO\ProductDTO;
+use App\Modules\Product\DTO\SupplierProductDTO;
 use Illuminate\Support\Facades\Http;
 
 class BestBuy implements Client
 {
-    protected $uri;
-    protected $apiKey;
+    protected string $uri;
+    protected string $apiKey;
 
     public function __construct()
     {
@@ -22,13 +22,13 @@ class BestBuy implements Client
 
         return [
             'products' => array_map(function ($item) {
-                return new ProductDTO(
-                    id: $item['sku'],
+                return new SupplierProductDTO(
+                    externalId: $item['sku'],
                     name: $item['name'],
                     description: $item['longDescription'],
                     category: $item['class'],
                     active: $item['active'],
-                    stockBalance: $item['orderable'],
+                    stockBalance: 100,
                     price: $item['regularPrice'],
                     image: $item['images'][0]['href'] ?? null,
                 );

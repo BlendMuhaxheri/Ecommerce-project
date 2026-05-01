@@ -3,7 +3,13 @@
 import { useState } from "react";
 import { useProductStore } from "../store/product.store";
 
-const categories = ["Fashion", "Electronics", "Home", "Beauty"];
+const categories = [
+  { label: "Fashion", value: "fashion" },
+  { label: "Electronics", value: "electronics" },
+  { label: "Home", value: "home" },
+  { label: "Beauty", value: "beauty" },
+];
+
 const brands = ["Nike", "Adidas", "Apple"];
 
 export default function ProductFilters() {
@@ -18,14 +24,18 @@ export default function ProductFilters() {
         <p className="text-sm font-medium mb-3 text-gray-700">Category</p>
         <div className="space-y-2 text-sm text-gray-600">
           {categories.map((c) => (
-            <label key={c} className="flex items-center gap-2 cursor-pointer">
+            <label
+              key={c.value}
+              className="flex items-center gap-2 cursor-pointer"
+            >
               <input
                 type="radio"
+                value={c.value}
                 name="category"
-                checked={filters.category === c}
-                onChange={() => setFilters({ category: c })}
+                checked={filters.category === c.value}
+                onChange={() => setFilters({ category: c.value })}
               />
-              {c}
+              {c.label}
             </label>
           ))}
         </div>
