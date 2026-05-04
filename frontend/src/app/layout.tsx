@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/common/navbar";
+import ReactQueryProvider from "./providers/ReactQueryProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,11 +32,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-screen flex flex-col">
-        <Navbar />
+        <ReactQueryProvider>
+          <Navbar />
 
-       <main className="flex-1 bg-gray-50 text-gray-900">
-          {children}
-        </main>
+          <main className="flex-1 bg-gray-50 text-gray-900">{children}</main>
+        </ReactQueryProvider>
       </body>
     </html>
   );

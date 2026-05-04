@@ -4,3 +4,5 @@ export type Product = {
   price : number;
   image : string;
 };
+
+export type SortBy = "price_asc" | "price_desc" | "newest";

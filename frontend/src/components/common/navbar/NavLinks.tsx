@@ -10,13 +10,13 @@ export default function NavLinks() {
       <Link href="/products" className="hover:text-black transition">
         Shop
       </Link>
-      <Link href="/product" className="hover:text-black transition">
+      <Link href="/categories" className="hover:text-black transition">
         Categories
       </Link>
-      <Link href="/product" className="hover:text-black transition">
+      <Link href="/deals" className="hover:text-black transition">
         Deals
       </Link>
-      <Link href="/product" className="hover:text-black transition">
+      <Link href="/about" className="hover:text-black transition">
         About us
       </Link>
     </div>

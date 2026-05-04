@@ -1,7 +1,7 @@
 "use client";
 
-import { useProductStore } from "../store/product.store";
-import type { SortBy } from "../store/product.store";
+import { useProductFilters } from "../hooks/useProductFilters";
+import type { SortBy } from "../types";
 
 const sortOptions = [
   { label: "Newest", value: "newest" },
@@ -10,7 +10,7 @@ const sortOptions = [
 ];
 
 export default function ProductSort() {
-  const { filters, setFilters } = useProductStore();
+  const { filters, setFilters } = useProductFilters();
 
   return (
     <select

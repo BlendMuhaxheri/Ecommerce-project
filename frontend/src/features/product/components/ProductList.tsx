@@ -1,54 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useProductStore } from "../store/product.store";
-import { fetchProducts, ProductMeta } from "../services/product.api";
 import ProductCard from "./ProductCard";
-import { Product } from "../types";
+import { useProducts } from "../hooks/useProducts";
+import { useProductFilters } from "../hooks/useProductFilters";
 
 export default function ProductGrid() {
-  const { filters, page, setPage } = useProductStore();
+  const { filters, setFilters } = useProductFilters();
 
-  const [products, setProducts] = useState<Product[]>([]);
-  const [meta, setMeta] = useState<ProductMeta | null>(null);
-  const [loading, setLoading] = useState(false);
+  const { data, isLoading, isFetching } = useProducts({
+    category: filters.category,
+    sort: filters.sort,
+    search: filters.search,
+    priceMin: filters.priceMin,
+    priceMax: filters.priceMax,
+    page: filters.page,
+  });
 
-  useEffect(() => {
-    async function loadProducts() {
-      try {
-        setLoading(true);
-
-        const response = await fetchProducts({
-          ...filters,
-          page,
-        });
-
-        if (page === 1) {
-          setProducts(response.data);
-        } else {
-          setProducts((prev) => {
-            const merged = [...prev, ...response.data];
-            const unique = Array.from(
-              new Map(merged.map((item) => [item.id, item])).values(),
-            );
-
-            return unique;
-          });
-        }
-
-        setMeta(response.meta);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadProducts();
-  }, [filters, page]);
+  const products = data?.data ?? [];
+  const meta = data?.meta;
 
   const handleLoadMore = () => {
-    if (!loading) {
-      setPage(page + 1);
-    }
+    if (isFetching) return;
+
+    setFilters({
+      page: (filters.page ?? 1) + 1,
+    });
   };
 
   return (
@@ -59,18 +35,14 @@ export default function ProductGrid() {
         ))}
       </div>
 
-      {meta && page < meta.last_page && (
+      {meta && filters.page < meta.last_page && (
         <div className="flex justify-center mt-8">
           <button
             onClick={handleLoadMore}
-            disabled={loading}
-            className={`px-6 py-2 rounded transition ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-black text-white hover:bg-gray-800"
-            }`}
+            disabled={isFetching}
+            className="px-6 py-2 rounded bg-black text-white"
           >
-            {loading ? "Loading..." : "Load More"}
+            {isFetching ? "Loading..." : "Load More"}
           </button>
         </div>
       )}

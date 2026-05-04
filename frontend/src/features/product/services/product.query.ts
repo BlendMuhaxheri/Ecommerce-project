@@ -1,9 +1,11 @@
-import {SortBy} from "../store/product.store";
+import type { SortBy } from "../types";
 
 export type ProductQueryParams = {
     search?:string;
     sort?:SortBy;
     category?:string|null;
+    priceMin?:number|null;
+    priceMax?:number|null;
     page?:number;
 }
 
@@ -20,6 +22,14 @@ export function buildProductQuery(params: ProductQueryParams):string {
 
     if(params.category){
         query.append("category", params.category);
+    }
+
+    if (params.priceMin !== null && params.priceMin !== undefined) {
+        query.append("priceMin", String(params.priceMin));
+    }
+
+    if (params.priceMax !== null && params.priceMax !== undefined) {
+        query.append("priceMax", String(params.priceMax));
     }
 
     if(params.page){

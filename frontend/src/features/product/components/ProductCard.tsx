@@ -6,7 +6,6 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({ product }: ProductCardProps) {
-  console.log(product, "fromproductcard");
   return (
     <div className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition">
       {product.image?.trim() ? (

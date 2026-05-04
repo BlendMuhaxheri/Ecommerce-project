@@ -9,8 +9,20 @@ class ProductQueryFilter extends QueryFilter
         return [
             'search',
             'category',
+            'priceMin',
+            'priceMax',
             'sort'
         ];
+    }
+
+    public function filterPriceMin(int $priceMin)
+    {
+        $this->builder->where('price', '>=', $priceMin);
+    }
+
+    public function filterPriceMax(int $priceMax)
+    {
+        $this->builder->where('price', '<=', $priceMax);
     }
 
     public function filterSearch(string $value)
