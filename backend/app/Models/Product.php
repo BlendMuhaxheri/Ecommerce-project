@@ -17,7 +17,8 @@ class Product extends Model
         'item_status',
         'stock_balance',
         'price',
-        'image'
+        'image',
+        'slug'
     ];
 
     public function scopeFilter(Builder $builder, QueryFilter $filters)

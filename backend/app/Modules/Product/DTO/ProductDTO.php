@@ -6,6 +6,7 @@ class ProductDTO
 {
     public function __construct(
         public string $name,
+        public string $slug,
         public ?string $image,
         public int $price,
         public int|string $id,

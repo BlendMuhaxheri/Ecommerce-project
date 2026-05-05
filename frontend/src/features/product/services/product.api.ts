@@ -1,16 +1,6 @@
 import { apiClient } from "@/lib/apiClient";
 import { buildProductQuery, ProductQueryParams } from "./product.query";
-import { Product } from "../types";
-
-type RawProduct = {
-  type: string;
-  id: number;
-  attributes: {
-    name: string;
-    image: string;
-    price: string;
-  };
-};
+import { Product, ApiProduct } from "../types";
 
 export type ProductMeta = {
   current_page: number;
@@ -20,7 +10,7 @@ export type ProductMeta = {
 };
 
 type ProductResponse = {
-  data: RawProduct[];
+  data: ApiProduct[];
   meta: ProductMeta;
 };
 
@@ -40,9 +30,18 @@ export async function fetchProducts(
     data: response.data.map((item) => ({
       id: String(item.id),
       name: item.attributes.name,
+      slug: item.attributes.slug,
       image: item.attributes.image,
       price: Number(item.attributes.price),
     })),
     meta: response.meta,
   };
+}
+
+export async function getProduct(id: number): Promise<{ data: ApiProduct }> {
+  return apiClient<{ data: ApiProduct }>(`/products/${id}`);
+}
+
+export async function getRelatedProducts(id: number) {
+  return apiClient(`/products/${id}/related`);
 }

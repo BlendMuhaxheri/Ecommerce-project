@@ -3,6 +3,7 @@
 import ProductCard from "./ProductCard";
 import { useProducts } from "../hooks/useProducts";
 import { useProductFilters } from "../hooks/useProductFilters";
+import Link from "next/link";
 
 export default function ProductGrid() {
   const { filters, setFilters } = useProductFilters();
@@ -31,7 +32,13 @@ export default function ProductGrid() {
     <div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <Link
+            key={product.id}
+            href={`/products/${product.slug}`}
+            className="block"
+          >
+            <ProductCard product={product} />
+          </Link>
         ))}
       </div>
 

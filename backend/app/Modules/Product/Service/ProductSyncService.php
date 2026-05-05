@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\SupplierProduct;
 use App\Modules\Category\Service\CategoryMatcherService;
 use App\Modules\Product\DTO\ProductDTO;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class ProductSyncService
 {
@@ -36,8 +36,15 @@ class ProductSyncService
             ]
         );
 
+        $product->slug = Str::slug(
+            $supplierProduct->name
+        ) . '-' . $product->id;
+
+        $product->saveQuietly();
+
         return new ProductDTO(
             id: $product->id,
+            slug: $product->slug,
             name: $product->name,
             image: $product->image,
             price: (int) $product->price,
