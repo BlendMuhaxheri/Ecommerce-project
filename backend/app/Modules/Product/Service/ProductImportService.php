@@ -32,7 +32,9 @@ class ProductImportService
 
         $response = $this->fetchSupplierData($supplier, $page);
 
-        foreach ($response['products'] as $item) {
+        $products = $response['products'] ?? $response;
+
+        foreach ($products as $item) {
 
             $supplierProduct = SupplierProduct::updateOrCreate(
                 [

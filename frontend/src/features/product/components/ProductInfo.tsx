@@ -1,7 +1,8 @@
 "use client";
 
-import AddToCart from "./AddToCart";
+import AddToCart from "@/features/cart/components/AddToCart";
 import type { ApiProduct } from "../types";
+import AddToWishlist from "./AddToWishlist";
 
 type Props = {
   product: ApiProduct;
@@ -29,6 +30,7 @@ export default function ProductInfo({ product }: Props) {
       <p className="mt-5 text-gray-600">{product.attributes.description}</p>
 
       <AddToCart product={product} />
+      <AddToWishlist product={product} />
     </div>
   );
 }

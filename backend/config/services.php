@@ -39,6 +39,10 @@ return [
         'best_buy' => [
             'base_uri' => env('BEST_BUY_URI'),
             'api_key'  => env('BEST_BUY_KEY')
+        ],
+
+        'fake_store' => [
+            'base_uri' => env('FAKE_STORE_URI'),
         ]
     ]
 

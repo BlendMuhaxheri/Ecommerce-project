@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "pisces.bbystatic.com",
       },
+      {
+        protocol: "https",
+        hostname: "fakestoreapi.com",
+      },
     ],
   },
 };

@@ -9,13 +9,14 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition">
       {product.image?.trim() ? (
-        <Image
-          src={product.image}
-          alt={product.name}
-          width={300}
-          height={300}
-          className="w-full h-48 object-cover rounded-t-xl"
-        />
+        <div className="relative w-full aspect-square bg-gray-100 rounded-t-xl overflow-hidden">
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-contain p-2"
+          />
+        </div>
       ) : (
         <div className="w-full h-48 bg-gray-100 rounded-t-xl flex items-center justify-center text-sm text-gray-500">
           No image found
