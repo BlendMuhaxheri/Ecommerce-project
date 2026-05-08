@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\CategoryRule;
 use App\Modules\Category\DTO\CategoryDTO;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
 
 class CategoryMatcherService
 {

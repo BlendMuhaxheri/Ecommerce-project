@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/common/navbar";
 import ReactQueryProvider from "./providers/ReactQueryProvider";
+import AuthModal from "@/features/auth/components/AuthModal";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         <ReactQueryProvider>
           <Navbar />
+          <AuthModal />
 
           <main className="flex-1 bg-gray-50 text-gray-900">{children}</main>
         </ReactQueryProvider>

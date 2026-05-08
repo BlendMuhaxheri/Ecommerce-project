@@ -2,13 +2,14 @@
 
 namespace App\Modules\Cart\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Modules\Cart\Http\Resources\CartResource;
 use App\Modules\Cart\Service\CartService;
 use Illuminate\Http\Request;
 
-class CartController
+class CartController extends Controller
 {
     public function __construct(private CartService $cartService) {}
 
